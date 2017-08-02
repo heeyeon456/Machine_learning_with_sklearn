@@ -159,9 +159,9 @@ def cal_external_auc(test_df,y_score):
 
     test_y=test_df.iloc[-1, 1:]
     test_y=make_binary('normal','cancer',test_y).values
-    fpr,tpr,threshold = roc_curve(y_test,y_score)
+    fpr,tpr,threshold = roc_curve(test_y,y_score)
     roc_auc=auc(fpr,tpr)
-    aupr_value=aupr(y_test,y_score)
+    aupr_value=aupr(test_y,y_score)
     print('auc : '+roc_auc+'\naupr : '+aupr_value)
 
     return roc_auc, aupr_value
@@ -184,21 +184,13 @@ def cal_auc(inputdf,model,testratio):
     roc_auc=auc(fpr,tpr)  
     Aupr=aupr(y_test,y_score)
 
-<<<<<<< HEAD
     return y_score,fpr,tpr,threshold,roc_auc
-=======
-    return y_score,fpr,tpr,threshold,roc_auc,Aupr
->>>>>>> ea6edb99d165880cf0291300d7c7383708db95f5
 
 def draw_roc(inputdf,model,testratio):
 
     plt.figure()
     lw=2
-<<<<<<< HEAD
     y_score,fpr,tpr,threshold,roc_auc= cal_auc(inputdf,model,testratio)
-=======
-    y_score, fpr,tpr,threshold ,roc_auc= cal_auc(inputdf,model,testratio)
->>>>>>> ea6edb99d165880cf0291300d7c7383708db95f5
 
     plt.plot(fpr,tpr,color='darkorange',lw=lw,label='ROC curve (area=%0.2f)' % roc_auc)
     plt.plot([0,1],[0,1],color='navy',lw=lw,linestyle='--')
